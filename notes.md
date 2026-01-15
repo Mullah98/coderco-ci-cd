@@ -1,0 +1,160 @@
+# CI / CD (Continuous Integration & Continuous Deployment/Delivery)
+
+---
+
+## **CI/CD Key Notes**
+
+### **1. Basics**
+- **CI (Continuous Integration):** Frequent code integration to catch errors early.
+- **CD:**
+
+  * **Delivery:** Code always deployable, manual release possible.
+  * **Deployment:** Automatic release after passing tests.
+- **Benefits:** Faster delivery, fewer errors, better team collaboration.
+
+### **2. CI/CD Pipeline**
+1. **Commit code** → trigger build
+2. **Build** → compile & assemble dependencies
+3. **Test** → automated tests
+4. **Staging** → further testing
+5. **Production** → deploy live
+
+### **3. Popular Tools**
+ GitLab CI/CD, Jenkins, CircleCI, TravisCI, GitHub Actions
+- Cloud-native: AWS, Azure, GCP
+
+### **4. Role in DevOps**
+
+* CI/CD automates build, test, deploy.
+* **Benefits:** Collaboration, automation, continuous feedback, consistency.
+* **Architecture:** Source control → CI/CD → Monitoring/logging (Prometheus, Grafana, ELK).
+
+---
+
+## GitHub Actions
+- GitHub's built-in CI/CD tool
+- Runs workflows automatically on events (eg: push, pull-requests etc)
+
+**Workflow Basics**
+- Defined in *YAML*
+- Triggered by events like *commit* or *pull request*
+
+**Main use cases**
+- **CI:** Run tests on every push or pull request
+- **CD:** Auto-deploy after tests pass
+- **Automation:** Automate repetitive tasks (eg: project board updates)
+
+**Why it matter**
+- Faster releases
+- Fewer manual errors
+- Consistent deployments
+
+---
+
+## YAML = “YAML Ain’t Markup Language”
+- Human-readable format used for **configuration files**
+- Core to **DevOps tools** (CI/CD, Kubernetes, GitHub Actions)
+- **YAML is indentation-sensitive**
+- Wrong spacing = broken config
+
+**What YAML Is Used For**
+- Defining **configs and workflows**
+- Easy for humans to read and write
+- Machine-friendly for automation
+
+**Core Concepts (Very Important)**
+- **1. Key–Value Pairs**
+  - Format: `key: value`
+  - Used to define settings and parameters
+```
+name: John Doe
+age: 40
+```
+
+**2. Lists**
+  - Used to store multiple values
+  - Each item starts with a **dash (-)**
+```
+fruits:
+- apple
+- banana
+- cherry
+```
+
+**3. Nested Data (Indentation)**
+  - YAML uses **indentation (spaces)** to show hierarchy
+  - Child elements belong to the parent above them
+  - **Consistency in spacing is critical** (usually 2 spaces)
+```
+address:
+  street: 53 Fir Road
+  city: Manchester
+  country: United Kingdom
+```
+
+---
+
+## GitHub Actions Workflow
+## **GitHub Actions Workflow Syntax – Must-Know Notes**
+
+**1. Workflow File**
+- Defined in a **YAML file**
+- Location: `.github/workflows/`
+- Any `.yml` / `.yaml` file here becomes a **pipeline**
+
+**2. Workflow Structure (Top Level)**
+- **name**
+  - Human-readable workflow label
+  - Used only for identification
+
+**on (trigger / event)**
+  - Defines **when** the workflow runs
+  - Common events:
+
+  - `push`
+  - `pull_request`
+  - `schedule` (cron)
+
+**3. Jobs**
+- A workflow contains **one or more jobs**
+- Jobs:
+
+  - Run on **virtual machines**
+  - Can run **in parallel or sequentially**
+- Each job has a unique name (e.g. `build`)
+
+**4. runs-on**
+- Defines the **OS/environment** for a job
+- Common values:
+
+  - `ubuntu-latest` (most common)
+  - `windows-latest`
+  - `macos-latest`
+- Jobs can also run in **containers**
+
+**5. Steps**
+- Jobs are made up of **steps**
+- Steps run **sequentially**
+- Each step:
+
+  - Runs a shell command **or**
+  - Uses a reusable **action**
+
+**6. Actions**
+- Reusable units of work
+- Pulled from the **GitHub Actions Marketplace**
+- Common examples:
+
+  - `actions/checkout` → pulls repo code
+  - Setup language runtimes (Node, Python, etc.)
+  - Run install, test, build commands
+
+**Core Structure to Remember**
+```
+Workflow
+ └── Event (on)
+     └── Job(s)
+         └── runs-on
+             └── Steps
+```
+---
