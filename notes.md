@@ -157,4 +157,30 @@ Workflow
          └── runs-on
              └── Steps
 ```
+**Create first pipeline/workflow**
+```yaml
+## Workflow name shown in GitHub Actions
+name: CoderCo CICD workflow
+
+## Event that triggers the workflow
+on: [push]
+
+## Jobs run by the workflow
+jobs:
+  ## Job name
+  build:
+    ## Runner environment
+    runs-on: ubuntu-latest
+
+    ## Steps executed in order
+    steps:
+      ## Checkout repository code
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      ## Test step to verify workflow runs
+      - name: We are testing this workflow
+        run: echo Hello everyone!
+```
+
 ---
