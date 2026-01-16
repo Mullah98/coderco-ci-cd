@@ -228,3 +228,16 @@ strategy:
   - You get notifications **per Python version**, only for successful runs.
 
 ---
+
+## Secrets in GitHub Actions
+- Encrypted values for *passwords, tokens, and keys*
+- Stores securely in *GitHub repo settings -> Secrets -> Actions*
+- *Never* printed in logs (hidden by GitHub)
+
+**How secrets are used**
+- Accessed in workflows via:
+  - `secrets.SECRET_NAME`
+
+**Secrets vs Variables**
+- Secrets are hidden and encrypted for sensitive data
+- Variables are visible, for non-sensitive config
