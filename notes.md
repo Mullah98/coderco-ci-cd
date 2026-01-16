@@ -184,3 +184,47 @@ jobs:
 ```
 
 ---
+
+## Matrix Builds & Parallel Testing
+- A **matrix** lets you run the same job across **multiple configurations** (e.g., Python versions) **in parallel**.
+- Each combination is a separate “job instance” running independently
+
+**Example:**
+```yaml
+strategy:
+  matrix:
+    python-version: [3.7, 3.8, 3.9]
+```
+
+**Usage:**
+```yaml
+- name: Set up Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: ${{ matrix.python-version }}
+```
+
+- This creates **3 parallel runs**, one for each Python version.
+- Parallel runs help **catch compatibility issues** early.
+
+---
+
+## Conditionals
+- Use conditionals to **run steps only when a certain condition is met**.
+- Common conditions:
+  - `success()` → only run if previous steps passed.
+  - `failure()` → only run if previous steps failed.
+
+**Example:**
+```yaml
+- name: Notify success
+  if: success()
+  run: echo "All tests passed on Python ${{ matrix.python-version }}"
+```
+
+**Explanation**
+- Step runs **only if tests succeed**.
+- Can combine with matrix:
+  - You get notifications **per Python version**, only for successful runs.
+
+---
