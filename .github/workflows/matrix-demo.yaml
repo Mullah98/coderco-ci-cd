@@ -1,6 +1,9 @@
 name: Simple Matrix Demo
 
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - 'notes.md'
 
 jobs:
   build:
@@ -14,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Show current environment
-        run: echo "Running job for environment:${{matrix.environment}}"
+        run: echo "Running job for environment:${{ matrix.environment }}"
 
       - name: Conditional step
         if: ${{ matrix.environment == 'prod' }}
