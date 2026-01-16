@@ -1,0 +1,21 @@
+name: Simple Matrix Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, staging, prod]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Show current environment
+        run: echo 'Running job for environment: ${{ matrix.environment }}'
+
+      - name: Conditional step
+        if: ${{ matrix.environment == 'prod' }}
+        run: echo "This only runs for PROD environment"
