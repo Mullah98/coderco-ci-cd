@@ -1,6 +1,6 @@
 name: CoderCo CICD Workflow
 
-# on: 
+on: workflow_dispatch
 
 jobs:
   build:
