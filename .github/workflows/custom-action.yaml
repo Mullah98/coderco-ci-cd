@@ -5,12 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
 
-  steps:
-  - name: checkout code
-    uses: actions/checkout@v2
-
-    -name: hello world custom actions
-    uses: Mullah98/my-custom-action@main
-    with:
-      who-to-greet: 'CoderCo Team'
+      - name: hello world custom actions
+        uses: Mullah98/my-custom-action@main
+        with:
+          who-to-greet: 'CoderCo Team'
