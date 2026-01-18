@@ -241,3 +241,82 @@ strategy:
 **Secrets vs Variables**
 - Secrets are hidden and encrypted for sensitive data
 - Variables are visible, for non-sensitive config
+
+Got it! Here’s a **notes-style summary** you can drop into your notes repo — concise, conceptual, and highlights what matters:
+
+---
+
+## Custom GitHub Actions (JavaScript)
+- Reusable automation logic for GitHub workflows.
+- Can be used across multiple repos.
+
+**Structure:**
+- **`action.yml`** → defines inputs, outputs, runtime, entry point.
+- **`index.js`** → main JavaScript logic.
+- **`dist/index.js`** → compiled bundle with dependencies (via `ncc`).
+
+**Inputs/Outputs:**
+- Inputs defined in `action.yml` → read with `core.getInput()`.
+- Outputs set with `core.setOutput()`.
+
+**Dependencies:**
+- Use `@actions/core` for GitHub integration.
+- Dependencies must be bundled (`ncc`) because GitHub **does not install `node_modules`**.
+
+**Compilation:**
+- `ncc` bundles your JS + dependencies into one file for GitHub.
+- `dist/` usually committed; `node_modules/` ignored.
+
+**Workflow Usage:**
+- Called via `uses: owner/repo@branch` in `.github/workflows/*.yml`.
+- Inputs passed via `with:`.
+- Outputs can be consumed by later steps.
+
+---
+
+## Manual triggers in GitHub Actions
+- Allows workflows to be started *manually* from the GitHub Actions UI
+- Implemented using `workflow_dispatch`
+
+**How It Works:**
+- Define a workflow name
+- Add `workflow_dispatch` under `on`
+- Optionally define *inputs* user must provide before running
+
+**Key Benefits**
+- Full control over when workflows run
+- Safer production operations
+- No need for code pushes to trigger jobs
+
+---
+
+## CI/CD Security & Debugging
+**1. Security in CI/CD Pipelines**
+**Best Practices:**
+1. **Secure Secrets**
+   - Never hardcode API keys, passwords, or tokens
+   - Use GitHub Secrets or a secure secret manager
+2. **Control Access**
+   - Apply **least privilege** principle
+   - Use **role-based access control (RBAC)**
+3. **Scan for Vulnerabilities**
+   - Regularly check code and dependencies
+   - Tools: Dependabot, Snyk, or other security scanners
+4. **Audit & Monitor**
+   - Track actions and changes
+   - Enable logging, monitoring, and alerts for unusual activity
+
+**2. Debugging Workflow Failures**
+**Common Issues:**
+- **Failed tests** → check test results and code logic
+- **Dependency errors** → missing, conflicting, or outdated packages
+- **Configuration errors** → YAML syntax mistakes (indentation, spaces, typos)
+- **Permission issues** → insufficient repo or secret access
+
+**Common Solutions:**
+1. **Review logs** → identify exact errors
+2. **Rerun jobs** → catch transient failures
+3. **Update dependencies** → fix conflicts and compatibility
+4. **Check configuration & secrets** → ensure correct syntax and access
+
+---
