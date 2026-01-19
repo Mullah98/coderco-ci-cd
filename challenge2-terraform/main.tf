@@ -3,7 +3,6 @@ terraform {
 }
 
 resource "null_resource" "example"{
-  # intentionally misformatted: no space before {
   triggers = {
     always_run = timestamp()
   }
