@@ -5,7 +5,7 @@ A GitHub Actions workflow that automatically **checks Terraform code** for forma
 This ensures any Terraform code pushed to the repository is **linted and validated** before merging.
 
 ## Pipeline Workflow
-The workflow is defined in: `.github/workflows/challenge2-terraform-lint.yml`
+The workflow is defined in: `.github/workflows/terraform-lint.yml`
 
 ### Workflow Steps
 1. Triggered on **pull request** to `main`  

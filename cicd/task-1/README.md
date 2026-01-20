@@ -9,7 +9,7 @@ A GitHub Actions **CI/CD workflow** that automatically:
 The application itself is intentionally minimal. The main goal of this challenge was to **practice automating container workflows using GitHub Actions**.
 
 ## Pipeline Workflow
-The workflow is defined in: `.github/workflows/challenge1-docker-build-push.yml`.
+The workflow is defined in: `.github/workflows/docker-build-push.yml`.
 
 **Key steps:**
 - Checkout repository code
